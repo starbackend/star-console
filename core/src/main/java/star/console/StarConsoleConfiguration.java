@@ -35,9 +35,7 @@ public class StarConsoleConfiguration {
 				System.setProperty("hawtio.dirname", "/tmp/hawtio");
 				System.setProperty("hawtio.authenticationEnabled", Boolean.toString(starConsoleProperties.isAuthenticationEnabled()));
 				Main main = new Main();
-				if (serverProperties.getPort()!=null) {
-					main.setPort(serverProperties.getPort());
-				}
+				main.setPort(serverProperties.getPort());
 				main.setWar("res/hawtio-web.war");
 				main.run(false);
 			} catch (Exception e) {
