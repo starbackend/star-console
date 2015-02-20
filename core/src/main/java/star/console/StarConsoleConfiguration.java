@@ -7,14 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
+
+import star.app.StarAppConfiguration;
 
 import com.google.common.base.Throwables;
 
 @Configuration
 @EnableConfigurationProperties({ServerProperties.class, StarConsoleProperties.class})
+@Import(StarAppConfiguration.class)
 public class StarConsoleConfiguration {
-	
 	
 	@Component
 	public static class HawtioStarter implements CommandLineRunner {
