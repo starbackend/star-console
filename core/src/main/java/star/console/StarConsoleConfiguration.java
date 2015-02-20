@@ -3,11 +3,10 @@ package star.console;
 import io.hawt.embedded.Main;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.google.common.base.Throwables;
@@ -18,16 +17,16 @@ public class StarConsoleConfiguration {
 	
 	
 	@Component
-	public static class HawtioStarter implements ApplicationListener<ContextRefreshedEvent> {
+	public static class HawtioStarter implements CommandLineRunner {
 		
 		@Autowired
 		ServerProperties serverProperties;
 		
 		@Autowired
 		StarConsoleProperties starConsoleProperties;
-		
+
 		@Override
-		public void onApplicationEvent(ContextRefreshedEvent event) {
+		public void run(String... args) throws Exception {
 			try {
 				System.setProperty("hawtio.offline", "true");
 				System.setProperty("hawtio.dirname", "/tmp/hawtio");
