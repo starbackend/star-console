@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>star</groupId>
+		<artifactId>star-console</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>star-console-rpm</artifactId>
+	<packaging>rpm</packaging>
+
+	<properties>
+		<rpm.username>starconsole</rpm.username>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>star</groupId>
+			<artifactId>star-console-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>cwatch-priv</id>
+			<name>cwatch-priv-releases</name>
+			<url>https://cwatch.org/repo/priv-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>cwatch-priv</id>
+			<name>cwatch-priv-snapshots</name>
+			<url>https://cwatch.org/repo/priv-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<execution>
+						<id>unpack-hawtio</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>io.hawt</groupId>
+									<artifactId>hawtio-web</artifactId>
+									<type>war</type>
+									<outputDirectory>${rpm.res.dir}</outputDirectory>
+									<destFileName>hawtio-web.war</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
