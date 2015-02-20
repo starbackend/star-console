@@ -5,9 +5,12 @@ import io.hawt.embedded.Main;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MutablePropertySources;
 
 import star.app.StarAppConfiguration;
 
@@ -18,8 +21,18 @@ import com.google.common.base.Throwables;
 @Import(StarAppConfiguration.class)
 public class StarConsoleConfiguration {
 	
+	
+	
 	@Bean
-	public CommandLineRunner hawtioStarter(final ServerProperties serverProperties, final StarConsoleProperties starConsoleProperties) {
+	public CommandLineRunner hawtioStarter(
+			final ApplicationContext applicationContext,
+			final ServerProperties serverProperties, 
+			final StarConsoleProperties starConsoleProperties
+	) {
+		MutablePropertySources src = ((ConfigurableEnvironment)applicationContext.getEnvironment()).getPropertySources();
+		
+		System.out.println(src);
+		
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... args) throws Exception {
