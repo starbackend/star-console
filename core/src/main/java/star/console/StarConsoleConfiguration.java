@@ -8,30 +8,28 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MutablePropertySources;
-
-import star.app.StarAppConfiguration;
 
 import com.google.common.base.Throwables;
 
 @Configuration
 @EnableConfigurationProperties({ServerProperties.class, StarConsoleProperties.class})
-@Import(StarAppConfiguration.class)
+@PropertySource({"classpath:/star-console.properties"})
 public class StarConsoleConfiguration {
 	
 	
 	
 	@Bean
 	public CommandLineRunner hawtioStarter(
-			final ApplicationContext applicationContext,
+			//final ApplicationContext applicationContext,
 			final ServerProperties serverProperties, 
 			final StarConsoleProperties starConsoleProperties
 	) {
-		MutablePropertySources src = ((ConfigurableEnvironment)applicationContext.getEnvironment()).getPropertySources();
-		
-		System.out.println(src);
+//		MutablePropertySources src = ((ConfigurableEnvironment)applicationContext.getEnvironment()).getPropertySources();
+//		
+//		System.out.println(src);
 		
 		return new CommandLineRunner() {
 			@Override
