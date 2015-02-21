@@ -8,7 +8,7 @@
 		<artifactId>star-boot</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<properties>
 		<star-env.appname>star-console</star-env.appname>
 	</properties>
@@ -20,6 +20,7 @@
 	<modules>
 		<module>core</module>
 	</modules>
+
 
 	<build>
 		<plugins>
@@ -42,11 +43,24 @@
 							</formats>
 						</configuration>
 					</execution>
+					<execution>
+						<id>pack-sources</id>
+						<inherited>false</inherited>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>${project.basedir}/src/main/assembly/sources.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<activation>
@@ -60,5 +74,5 @@
 			</modules>
 		</profile>
 	</profiles>
-	
+
 </project>
