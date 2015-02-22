@@ -18,9 +18,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>core</module>
+		<module>base</module>
 	</modules>
-
 
 	<build>
 		<plugins>
@@ -43,36 +42,21 @@
 							</formats>
 						</configuration>
 					</execution>
-					<execution>
-						<id>pack-sources</id>
-						<inherited>false</inherited>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-						<configuration>
-							<descriptors>
-								<descriptor>${project.basedir}/src/main/assembly/sources.xml</descriptor>
-							</descriptors>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<activation>
-				<os>
-					<name>linux</name>
-				</os>
-			</activation>
-			<modules>
-				<module>rpm</module>
-				<module>it</module>
-			</modules>
-		</profile>
-	</profiles>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>star</groupId>
+				<artifactId>star-console</artifactId>
+				<type>tar.gz</type>
+				<classifier>project</classifier>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>

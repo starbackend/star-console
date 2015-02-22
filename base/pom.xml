@@ -9,32 +9,34 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>star-console-it</artifactId>
-	<packaging>jar</packaging>
+	<artifactId>star-console-base</artifactId>
+	<packaging>pom</packaging>
 
 	<dependencies>
 		<dependency>
 			<groupId>star</groupId>
-			<artifactId>star-console-rpm</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>rpm</type>
+			<artifactId>star-console</artifactId>
+			<type>tar.gz</type>
+			<classifier>project</classifier>
 		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>net.schmizz</groupId>
-			<artifactId>sshj</artifactId>
-			<version>0.10.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-		</dependency>
-
-
 	</dependencies>
+
+	<modules>
+		<module>core</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<activation>
+				<os>
+					<name>linux</name>
+				</os>
+			</activation>
+			<modules>
+				<module>rpm</module>
+				<module>it</module>
+			</modules>
+		</profile>
+	</profiles>
 
 </project>
