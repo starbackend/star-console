@@ -7,6 +7,7 @@
 		<groupId>star</groupId>
 		<artifactId>star-boot-base</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../star-boot/base</relativePath>
 	</parent>
 
 	<properties>
